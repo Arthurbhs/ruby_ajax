@@ -1,0 +1,47 @@
+$(document).ready(function() {
+  carregarVeiculos(function(veiculos) {
+    $.each(veiculos, function(i, veiculo) {
+      var row = '<tr data-modelo="' + veiculo.modelo + '">';
+      row += '<td>' + veiculo.marca + '</td>';
+      row += '<td>' + veiculo.modelo + '</td>';
+      row += '</tr>';
+      $('#veiculos-table tbody').append(row);
+    });
+  });
+  
+  $('tbody tr').click(function() {
+    var modelo = $(this).data('modelo');
+    carregarDetalhesVeiculo(modelo, function(data) {
+      var details = '<p><strong>Marca:</strong> ' + data.marca + '</p>';
+      details += '<p><strong>Modelo:</strong> ' + data.modelo + '</p>';
+      $('#veiculo-details').html(details);
+    });
+  });
+});
+
+Este arquivo contém o código que adiciona a tabela HTML e a div para os detalhes do
+ veículo, e que adiciona um evento de clique em cada linha da tabela para 
+carregar os detalhes do veículo correspondente.
+
+Certifique-se de que o endereço da URL da rota "http://localhost:3000/veiculos.json"
+ esteja correto e que seu servidor do Ruby on Rails esteja em execução na porta 3000.
+
+Adicione os dois arquivos ao seu HTML:
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="conexao_ruby.js"></script>
+<script src="tabela_veiculos.js"></script>
+
+<table id="veiculos-table">
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div id="veiculo-details"></div>
+Desta forma, o arquivo "tabela_veiculos.js" depende do arquivo 
+"conexao_ruby.js" para funcionar, e a tabela de 
+veículos e os detalhes do veículo são exibidos no mesmo HTML.
