@@ -1,0 +1,31 @@
+task
+
+Digite o comando rails generate task Veiculo generate_vehicle no terminal e pressione Enter. Isso criará um novo arquivo de task em lib/tasks.
+Abra o arquivo de task recém-criado (localizado em lib/tasks) usando um editor de texto.
+Adicione o seguinte código para gerar um veículo com a gem Faker:
+19h10
+namespace :veiculo do
+  desc "Gera 5 veículos com marca, modelo, cor, combustível e transmissão"
+  task generate_vehicles: :environment do
+    5.times do
+      marca = Faker::Vehicle.make
+      modelo = Faker::Vehicle.model(make_of_model: marca)
+      cor = Faker::Vehicle.color
+      combustivel = Faker::Vehicle.fuel_type
+      transmissao = Faker::Vehicle.transmission
+      puts "Veículo gerado:"
+      puts "Marca: #{marca}"
+      puts "Modelo: #{modelo}"
+      puts "Cor: #{cor}"
+      puts "Combustível: #{combustivel}"
+      puts "Transmissão: #{transmissao}"
+      puts "-------------------------------------"
+    end
+  end
+end
+19h10
+class VeiculosController < ApplicationController
+  def index
+    @veiculos = Veiculo.all
+  end
+end

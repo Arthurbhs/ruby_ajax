@@ -1,0 +1,23 @@
+banco de dados
+
+Digite o comando rails generate model Veiculo marca:string modelo:string cor:string combustivel:string transmissao:string no terminal e pressione Enter. Isso criará um novo arquivo de migração no diretório db/migrate e um modelo "Veiculo" em app/models.
+Abra o arquivo de migração recém-criado (localizado em db/migrate) usando um editor de texto.
+Na função change dentro do arquivo de migração, adicione o código para criar a tabela "veiculos":
+19h10
+create_table :veiculos do |t|
+  t.string :marca
+  t.string :modelo
+  t.string :cor
+  t.string :combustivel
+  t.string :transmissao
+  t.timestamps
+end
+19h10
+create_table :veiculos do |t|
+  t.string :marca
+  t.string :modelo
+  t.string :cor
+  t.string :combustivel
+  t.string :transmissao
+  t.timestamps
+end

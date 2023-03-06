@@ -1,0 +1,41 @@
+API
+
+Crie um controlador para sua API. Para isso, execute o comando rails generate controller Api no terminal.
+Em seguida, crie uma rota para a sua API no arquivo config/routes.rb. Por exemplo,
+se você quiser criar uma rota para buscar informações de um usuário, você pode adicionar a seguinte linha ao arquivo de rotas:
+
+get '/api/users/:id', to: 'api#user'
+
+No controlador Api, crie um método para a rota que você acabou de criar. Por exemplo:
+
+def user
+  @user = User.find(params[:id])
+  respond_to do |format|
+    format.json { render json: @user }
+  end
+end
+
+
+Este método procura o usuário com o ID fornecido na URL e retorna seus dados em formato JSON.
+
+Agora, crie uma chamada AJAX para a sua API a partir de uma página HTML usando jQuery. Por exemplo:
+
+$.ajax({
+  url: '/api/users/1',
+  dataType: 'json',
+  success: function(data) {
+    console.log(data);
+  }
+});
+
+
+Este código faz uma chamada AJAX para a API para obter informações do usuário com
+ o ID 1. Quando a resposta é recebida, os dados são exibidos no console do navegador.
+
+Lembre-se de incluir a biblioteca jQuery em sua página HTML para usar a função $.ajax(). Você também pode precisar configurar
+ as permissões de CORS (Cross-Origin Resource Sharing) no lado do servidor para
+ permitir que as solicitações AJAX sejam feitas a partir de um domínio diferente.
+
+Este é apenas um exemplo simples de como criar uma API com JS AJAX 
+para um banco no Ruby on Rails. Você pode adaptar esse exemplo
+ para atender às necessidades específicas de seu projeto.
